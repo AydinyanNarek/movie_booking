@@ -1,0 +1,30 @@
+syntax = "proto3";
+package booking;
+
+message Empty {}
+
+message Movie  { uint32 id = 1; string title = 2; string description = 3; }
+message MovieList { repeated Movie movies = 1; }
+message MovieId   { uint32 id = 1; }
+
+message Theater { uint32 id = 1; string name = 2; }
+message TheaterList { repeated Theater theaters = 1; }
+
+message Seat { uint32 index = 1; string label = 2; }
+message SeatList { repeated Seat seats = 1; }
+
+message TheaterReq { uint32 movie_id = 1; uint32 theater_id = 2; }
+
+message BookingReq {
+  uint32 movie_id   = 1;
+  uint32 theater_id = 2;
+  repeated Seat seats = 3;
+}
+message BookingRep { bool success = 1; }
+
+service Booking {
+  rpc ListMovies   (Empty)      returns (MovieList);
+  rpc ListTheaters (MovieId)    returns (TheaterList);
+  rpc ListFreeSeats(TheaterReq) returns (SeatList);
+  rpc BookSeats    (BookingReq) returns (BookingRep);
+}

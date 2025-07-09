@@ -1,0 +1,6 @@
+# .dockerignore
+build*
+dist*
+.git
+*.swp
+*.user

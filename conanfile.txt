@@ -1,0 +1,9 @@
+[requires]
+grpc/1.67.1
+protobuf/5.27.0
+catch2/3.5.4
+fmt/10.2.1
+
+[generators]
+CMakeToolchain
+CMakeDeps
